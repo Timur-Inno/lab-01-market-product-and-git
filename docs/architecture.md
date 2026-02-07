@@ -1,72 +1,66 @@
-Product Architecture Documentation
-Product Choice
+# Product Architecture Documentation
 
-Product name: Telegram
-Website: <https://telegram.org>
+## Product Choice
+Product name: Telegram  
+Website: https://telegram.org  
 
-Description: Telegram is a cloud-based messaging platform that allows users to exchange messages, media, and files with a strong focus on speed, scalability, and security.
+Telegram is a cloud-based messaging platform that allows users to exchange messages, media, and files with a strong focus on speed, scalability, and security.
 
-Main Components
+## Main components
 
-Telegram Component Diagram code
+![Telegram Component Diagram](./diagrams/out/telegram/component-diagram/Component Diagram.svg)
 
-Based on the component diagram, the main components of Telegram are:
+[Component Diagram source](./diagrams/src/telegram/component-diagram.puml)
 
-Client Applications (Mobile / Desktop / Web)
-These applications provide the user interface and handle user interactions such as sending messages, uploading media, and displaying chats.
+**Client Applications (Mobile / Desktop / Web)**  
+Provide the user interface and handle user interactions such as sending messages, uploading media, and displaying chats.
 
-API Gateway
+**API Gateway**  
 Acts as a single entry point for all client requests, handling authentication, request validation, and routing to backend services.
 
-Messaging Service
-Responsible for processing, storing, and delivering messages between users, including message synchronization across devices.
+**Messaging Service**  
+Processes, stores, and delivers messages between users, including message synchronization across devices.
 
-Media Storage Service
+**Media Storage Service**  
 Stores and serves media files such as photos, videos, and documents uploaded by users.
 
-User & Authentication Service
+**User & Authentication Service**  
 Manages user accounts, login sessions, authentication tokens, and access control.
 
-Data Flow
+## Data flow
 
-Telegram Sequence Diagram code
+![Telegram Sequence Diagram](./diagrams/out/telegram/sequence-diagram/Sequence Diagram.svg)
 
-Selected flow: Sending a message
+[Sequence Diagram source](./diagrams/src/telegram/sequence-diagram.puml)
 
-The user sends a message from the Client Application.
+**Selected flow: Sending a message**
 
-The request is sent to the API Gateway, which verifies authentication.
+1. The user sends a message from the Client Application.  
+2. The request is sent to the API Gateway with an authentication token.  
+3. The API Gateway validates the request and forwards it to the Messaging Service.  
+4. The Messaging Service stores the message and processes delivery.  
+5. If the message contains media, the Media Storage Service is used.  
+6. The message is delivered to the recipient’s client application.
 
-The Messaging Service processes and stores the message.
+**Data exchanged:**
+- Client → API Gateway: message content, auth token  
+- API Gateway → Messaging Service: validated message  
+- Messaging Service → Media Storage Service: media upload/download  
+- Messaging Service → Client: delivery status  
 
-If the message contains media, the Media Storage Service is used to upload or retrieve the media file.
+## Deployment
 
-The message is delivered to the recipient’s client application.
+![Telegram Deployment Diagram](./diagrams/out/telegram/deployment-diagram/Deployment Diagram.svg)
 
-Components interaction and data exchanged:
+[Deployment Diagram source](./diagrams/src/telegram/deployment-diagram.puml)
 
-Client → API Gateway: message content and authentication token
+Telegram client applications run on user devices (mobile, desktop, web).  
+Backend services such as the API Gateway, Messaging Service, Authentication Service, and Media Storage Service are deployed on distributed cloud servers behind load balancers to ensure scalability and high availability.
 
-API Gateway → Messaging Service: validated message data
+## Assumptions
+- The Messaging Service is horizontally scalable and uses sharding to support millions of concurrent users.  
+- Media files are stored in a distributed object storage system with replication for fault tolerance.  
 
-Messaging Service → Media Storage Service: media upload/download requests
-
-Messaging Service → Client: message delivery status and updates
-
-Deployment
-
-Telegram Deployment Diagram code
-
-Telegram client applications run on user devices, while backend services such as the API Gateway, Messaging Service, Authentication Service, and Media Storage Service are deployed on distributed cloud servers behind load balancers to ensure scalability and high availability.
-
-Assumptions
-
-I assume that the Messaging Service is horizontally scalable and uses sharding to support millions of concurrent users.
-
-I assume that media files are stored in a distributed object storage system with replication for fault tolerance.
-
-Open Questions
-
-How is end-to-end encryption implemented and managed for secret chats?
-
-What caching strategies are used to reduce latency for frequently accessed messages and media?
+## Open questions
+- How is end-to-end encryption implemented and managed for secret chats?  
+- What caching strategies are used to reduce latency for frequently accessed messages and media?
