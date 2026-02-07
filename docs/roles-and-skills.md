@@ -1,45 +1,29 @@
-# Roles and Skills Mapping
-
-## Components and roles
-
-The Telegram product consists of several major components, each owned and maintained by specific technical roles.
-
-- Client Applications (Mobile / Desktop / Web) → Frontend Engineers, Mobile Developers
-- API Gateway → Backend Engineers
-- Messaging Service → Backend Engineers, Distributed Systems Engineers
-- Media Storage Service → Backend Engineers, Infrastructure Engineers
-- Authentication Service → Backend Engineers, Security Engineers
-- Cloud Infrastructure & Deployment → DevOps Engineers, Site Reliability Engineers (SRE)
-
----
-
 ## Roles and responsibilities
 
-### Frontend / Mobile Engineers
-- Develop and maintain mobile, desktop, and web client applications
-- Implement UI/UX designs and ensure smooth user interactions
-- Handle client-side performance optimization and bug fixing
+- **Frontend Engineer**
+  - Develops and maintains the web and mobile user interfaces.
+  - Implements UI logic and ensures responsive design.
+  - Collaborates with backend engineers to integrate APIs.
 
-### Backend Engineers
-- Design and implement core business logic
-- Build and maintain APIs and internal services
-- Ensure scalability, reliability, and data consistency
+- **Backend Engineer**
+  - Designs and implements server-side business logic.
+  - Builds and maintains REST/gRPC APIs.
+  - Ensures performance, scalability, and security of services.
 
-### Distributed Systems Engineers
-- Design scalable messaging and synchronization systems
-- Optimize message delivery and real-time communication
-- Handle data partitioning and replication strategies
+- **DevOps Engineer**
+  - Manages CI/CD pipelines and deployment workflows.
+  - Monitors system health and uptime.
+  - Automates infrastructure using cloud and IaC tools.
 
-### DevOps / SRE Engineers
-- Manage cloud infrastructure and CI/CD pipelines
-- Monitor system performance and uptime
-- Ensure fault tolerance, backups, and disaster recovery
+- **Database Engineer**
+  - Designs and optimizes database schemas.
+  - Ensures data integrity, backups, and replication.
+  - Tunes queries for performance and scalability.
 
-### Security Engineers
-- Design authentication and authorization mechanisms
-- Ensure secure data transmission and storage
-- Review system architecture for vulnerabilities
-
+- **Security Engineer**
+  - Implements authentication and authorization mechanisms.
+  - Conducts security audits and vulnerability assessments.
+  - Ensures secure data storage and transmission.
 ---
 
 ## Common skills across roles
